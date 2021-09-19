@@ -1,0 +1,63 @@
+<template name="publicModalsAddStockType">
+  <div class="modal" id="brdPublicModalsAddStockTypeModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form id="brdPublicModalsAddStockTypeForm">
+            <div class="mb-3">
+              <label for="brdStockTypeNameField" class="form-label"
+                >StockType Name</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="brdStockTypeNameField"
+                aria-describedby="stockTypeHelp"
+                name="name"
+              />
+              <div id="stockTypeHelp" class="form-text">
+                We'll never share your TOP SECRET INFORMATION with anyone else.
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="brdStockTypeDescriptionField" class="form-label"
+                >Description</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="brdStockTypeDescriptionField"
+                name="description"
+              />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="submit"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button
+            type="submit"
+            form="brdPublicModalsAddStockTypeForm"
+            class="btn btn-primary"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

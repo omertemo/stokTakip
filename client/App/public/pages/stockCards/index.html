@@ -1,0 +1,52 @@
+<template name="publicPagesStockCards">
+  {{#let _stockCards = (state.get 'stockCards') _products=(state.get
+  'products')}}
+  <div class="container">
+    <div class="row">
+      <div class="d-flex justify-content-between">
+        <h1>stockCards {{_stockCards.product.name}}</h1>
+        <!-- Ben Yukardakini yapamam(Büyük ihtimalle list method'u ile alakalı bir durum var) -->
+
+        <button
+          class="btn btn-success btn-sm float-end"
+          data-bs-toggle="modal"
+          data-bs-target="#brdPublicModalsAddStockCardModal"
+        >
+          Add StockCard
+        </button>
+      </div>
+    </div>
+    <div class="row mt-2">
+      {{#each _stockCards}}
+      <div class="col-sm-6">
+        <div class="card mt-3">
+          <div class="card-body">
+            <h5 class="card-title">
+              <strong>productId</strong> :{{productId}}
+            </h5>
+            <h6 class="card-title">
+              <strong>productId</strong> :{{productQuantity}}
+            </h6>
+            <p class="card-text">
+              <strong>unitId</strong> : {{unitId}} <br />
+              <strong>stockTypeId</strong>:{{stockTypeId}}
+            </p>
+          </div>
+          <div class="card-footer">
+            <a
+              href="/stockTransActions/{{_id}}"
+              class="btn btn-warning btn-sm float-start brd-transactions"
+            >
+              Go Stock Transaction
+            </a>
+            <button class="btn btn-danger btn-sm float-end brd-delete">
+              Delete StockCard
+            </button>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+  {{/let}}{{> publicModalsAddStockCard}}
+</template>

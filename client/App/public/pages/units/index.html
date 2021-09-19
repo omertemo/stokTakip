@@ -1,0 +1,35 @@
+<template name="publicPagesUnits">
+  {{#let _units = (state.get 'units')}}
+  <div class="container">
+    <div class="row">
+      <div class="d-flex justify-content-between">
+        <h1>units</h1>
+        <button
+          class="btn btn-success btn-sm float-end"
+          data-bs-toggle="modal"
+          data-bs-target="#brdPublicModalsAddUnitModal"
+        >
+          Add units
+        </button>
+      </div>
+    </div>
+    <div class="row mt-2">
+      {{#each _units}}
+      <div class="col-sm-6">
+        <div class="card mt-3">
+          <div class="card-body">
+            <h5 class="card-title">{{name}}</h5>
+            <p class="card-text">{{description}}</p>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-danger btn-sm float-end brd-delete">
+              Add Product
+            </button>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+  {{/let}} {{> publicModalsAddUnit}}
+</template>

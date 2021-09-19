@@ -1,0 +1,61 @@
+<template name="publicModalsAddUnit">
+  <div class="modal" id="brdPublicModalsAddUnitModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form id="brdPublicModalsAddUnitForm">
+            <div class="mb-3">
+              <label for="brdUnitNameField" class="form-label">Unit Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="brdUnitNameField"
+                aria-describedby="unitHelp"
+                name="name"
+              />
+              <div id="unitHelp" class="form-text">
+                We'll never share your TOP SECRET INFORMATION with anyone else.
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="brdUnitDescriptionField" class="form-label"
+                >Description</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="brdUnitDescriptionField"
+                name="description"
+              />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="submit"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button
+            type="submit"
+            form="brdPublicModalsAddUnitForm"
+            class="btn btn-primary"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

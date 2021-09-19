@@ -1,0 +1,68 @@
+<template name="publicModalsAddStockCard">
+  {{#let _stockTypes=(state.get 'stockTypes') _products=(state.get 'products')
+  _units=(state.get 'units')}}
+  <div class="modal" id="brdPublicModalsAddStockCardModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form id="brdPublicModalsAddStockCardForm">
+            <select
+              class="form-select mt-2"
+              name="stockTypeId"
+              aria-label="Default select example"
+            >
+              {{#each _stockTypes}}
+              <option value="{{_id}}">{{name}}</option>
+
+              {{/each}}
+            </select>
+            <select
+              class="form-select mt-3"
+              name="productId"
+              aria-label="Default select example"
+            >
+              {{#each _products}}
+              <option value="{{_id}}">{{name}}</option>
+              {{/each}}
+            </select>
+            <select
+              class="form-select mt-3"
+              name="unitId"
+              aria-label="Default select example"
+            >
+              {{#each _units}}
+              <option value="{{_id}}">{{name}}</option>
+              {{/each}}
+            </select>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="submit"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button
+            type="submit"
+            form="brdPublicModalsAddStockCardForm"
+            class="btn btn-primary"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/let}}
+</template>
