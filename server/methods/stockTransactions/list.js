@@ -2,17 +2,10 @@ import SimpleSchema from "simpl-schema";
 
 new ValidatedMethod({
   name: "stockTransactions.list",
-  validate: new SimpleSchema({
-    options: {
-      type: QueryOptionsSchema,
-      optional: true,
-    },
-  }).validator(),
+  validate: function () {},
   run: function (data) {
     this.unblock();
 
-    const { options } = data;
-
-    return Fetch(StockTransactions, {}, options, "stockTransactions");
+    return StockTransactions.find({ stockCardId: data.stockCardId }).fetch();
   },
 });

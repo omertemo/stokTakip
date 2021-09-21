@@ -8,6 +8,13 @@ new ValidatedMethod({
   run: function (data) {
     this.unblock();
 
+    const stockTransaction = StockTransactions.findOne({ _id: data._id });
+
+    ActionStockCardUpdateQuantity(
+      stockTransaction.stockCardId,
+      stockTransaction.productQuantity,
+      "delete"
+    );
     StockTransactions.remove({ _id: data._id });
   },
 });

@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="row mt-2">
-      {{#each _products}}
+      {{#each _products}}<!-- Döngü misali çalışır alt kısmını her product için tekrar oluşturur -->
       <div class="col-sm-6">
         <div class="card mt-3">
           <div class="card-body">
@@ -23,7 +23,7 @@
           </div>
           <div class="card-footer">
             <button class="btn btn-danger btn-sm float-end brd-delete">
-              Add Product
+              Delete Product
             </button>
           </div>
         </div>
@@ -32,4 +32,5 @@
     </div>
   </div>
   {{/let}} {{> publicModalsAddProduct}}
+  <!-- Modal'ı Burada import ediyoruz -->
 </template>

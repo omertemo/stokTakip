@@ -1,10 +1,9 @@
 import Swal from "sweetalert2";
-// import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 
 Template.publicPagesStockCards.onCreated(function () {
   this.state = new ReactiveDict(null, {
-    stockCards: [],
-    productQuantity: 0,
+    stockCards: [], //Ekranda gösterilecek stokCardlar için bir dizi tanımlıyoruz(heralde)
+    // productQuantity: 0, //burası sıkıntılı
   });
 });
 
@@ -19,13 +18,14 @@ Template.publicPagesStockCards.onRendered(function () {
         console.log("error", error);
       }
       if (result) {
-        console.log(result.stockCards);
+        console.log(result);
 
-        self.state.set("stockCards", result.stockCards);
+        self.state.set("stockCards", result);
       }
     });
   });
 });
+
 Template.publicPagesStockCards.events({
   "click .brd-delete": function (event, template) {
     const stockCard = this;

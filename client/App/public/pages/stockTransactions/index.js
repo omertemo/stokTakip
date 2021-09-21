@@ -1,37 +1,73 @@
 import Swal from "sweetalert2";
-// import { FlowRouter } from "meteor/ostrio:flow-router-extra";
+import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 
 Template.publicPagesStockTransactions.onCreated(function () {
   this.state = new ReactiveDict(null, {
-    stockTransactions: [], //yeni bir dizi oluşturuyorum
-    // productQuantity: 0, //aynı zamanda yeni bir değişken oluşturuyorum(Yanlışını gör. Böyle bişey yok)
-    stockCards: [], //Bunu niye oluşturduğumu anladığımda açıklamayı değiştirecem
+    stockCard: null, //stockCard tanımlıyor(dizi değil herhalde)
+    stockTransactions: [], //stock transaction tanımlıyor(dizi)
   });
 });
 
 Template.publicPagesStockTransactions.onRendered(function () {
-  const self = this;
+  const self = this; //this' i self'e setliyor
 
   this.autorun(function () {
-    AppUtil.refreshTokens.get("stockTransactions"); //Refresh işleminde yeniden koşulacak
-    AppUtil.refreshTokens.get("productQuantity");
+    AppUtil.refreshTokens.get("stockTransactions"); //aynı şekilde
+    AppUtil.refreshTokens.get("stockCards"); //refresh edilmesi için
 
-    Meteor.call("stockTransactions.list", {}, function (error, result) {
-      if (error) {
-        console.log("error", error);
-      }
-      if (result) {
-        console.log(result.stockTransactions);
+    const stockCardId = FlowRouter.getParam("stockCardId");
 
-        self.state.set("stockTransactions", result.stockTransactions);
+    if (!stockCardId) {
+      return;
+    }
+
+    Meteor.call(
+      "stockCards.show",
+      { _id: stockCardId },
+      function (error, result) {
+        if (error) {
+          console.log("error", error);
+        }
+        if (result) {
+          console.log(result);
+          self.state.set("stockCard", result);
+        }
       }
-    });
+    );
+  });
+
+  this.autorun(function () {
+    AppUtil.refreshTokens.get("stockTransactions");
+
+    const stockCardId = FlowRouter.getParam("stockCardId");
+
+    if (!stockCardId) {
+      return;
+    }
+
+    Meteor.call(
+      "stockTransactions.list",
+      { stockCardId: stockCardId },
+      function (error, result) {
+        if (error) {
+          console.log("error", error);
+        }
+        if (result) {
+          console.log("BURASI");
+          console.log(result);
+          console.log("BURASI END");
+          self.state.set("stockTransactions", result);
+        }
+      }
+    );
   });
 });
-Template.publicPagesStockTransactions.events({
-  "click .brd-delete": function (event, template) {
-    const stockTransactions = this;
 
+Template.publicPagesStockTransactions.events({
+  "click .brd-stockTransaction-remove": function (event, template) {
+    event.preventDefault();
+    const stockTransaction = this;
+    console.log(this);
     Swal.fire({
       title: "Silmek istiyor musunuz?",
       text: "",
@@ -45,16 +81,23 @@ Template.publicPagesStockTransactions.events({
       if (result.value) {
         Meteor.call(
           "stockTransactions.delete",
-          { _id: stockTransactions._id },
+          { _id: stockTransaction._id },
           function (error, result) {
             if (error) {
               console.log("error", error);
             }
-
             AppUtil.refreshTokens.set("stockTransactions", Random.id());
           }
         );
       }
     });
+  },
+  "click .brd-stockTransaction-update": function (event, template) {
+    AppUtil.temp.set("stockTransaction", this);
+  },
+  "click .brd-select-class": function (event, template) {
+    event.preventDefault();
+    console.log(this);
+    template.state.set("stockCard", this);
   },
 });

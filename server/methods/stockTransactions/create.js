@@ -9,5 +9,10 @@ new ValidatedMethod({
     this.unblock();
 
     StockTransactions.insert(data.stockTransaction);
+    ActionStockCardUpdateQuantity(
+      data.stockTransaction.stockCardId,
+      data.stockTransaction.productQuantity,
+      "create"
+    );
   },
 });

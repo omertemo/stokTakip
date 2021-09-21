@@ -13,6 +13,6 @@ new ValidatedMethod({
 
     const { options } = data;
 
-    return Fetch(Products, {}, options, "products");
+    return Products.find({}).fetch();
   },
 });

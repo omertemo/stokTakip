@@ -1,9 +1,54 @@
 <template name="publicPagesStockTransactions">
+  {{#let _stockTransactions=(state.get 'stockTransactions')
+  _stockCard=(state.get 'stockCard')}}
   <div class="container">
-    <div class="row">
-      <div class="d-flex">
-        <h1>publicPagesStockTransactions</h1>
+    <div class="d-flex justify-content-between mt-3">
+      <h1>
+        Transaction Processes {{_stockCard.product.name}}
+        ({{_stockCard.productQuantity}} {{_stockCard.unit.name}} )
+      </h1>
+      <button
+        class="btn btn-success btn-sm float-end"
+        data-bs-toggle="modal"
+        data-bs-target="#brdPublicModalsAddTransactionModal"
+      >
+        Add a Process
+      </button>
+    </div>
+
+    <div class="row g-2">
+      <div class="col-12">
+        <form id="brdForm">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">productQuantity</th>
+                <th scope="col">price</th>
+                <th scope="col">transactionType</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- 
+                productQuantity: SimpleSchema.Integer, //her girdiğimizin quantity'sini belirtir
+                price: SimpleSchema.Integer,
+                stockCardId: SimpleSchema.RegEx.Id,
+                transactionType: String, 
+              -->
+              {{#each _stockTransactions}}
+              <tr>
+                <td>{{productQuantity}}</td>
+                <td>{{price}}</td>
+                <td>{{transactionType}}</td>
+                <td>
+                  <a class="btn btn-danger brd-stockTransaction-remove">Sil</a>
+                </td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </form>
       </div>
     </div>
   </div>
+  {{/let}} {{> publicModalsAddTransaction}}
 </template>

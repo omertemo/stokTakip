@@ -1,14 +1,12 @@
 import SimpleSchema from "simpl-schema";
 
 new ValidatedMethod({
-  name: "stockCards.create",
+  name: "stockCards.updateByQuantity",
   validate: new SimpleSchema({
-    stockCard: StockCardSchema.omit("productQuantity"),
+    _id: SimpleSchema.RegEx.Id,
+    productQuantity: Number,
   }).validator(),
   run: function (data) {
     this.unblock();
-
-    data.stockCard.productQuantity = 0;
-    StockCards.insert(data.stockCard);
   },
 });

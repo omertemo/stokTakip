@@ -38,7 +38,7 @@ Template.publicModalsAddStockCard.onRendered(function () {
         console.log("error", error);
       }
       if (result) {
-        self.state.set("products", result.products);
+        self.state.set("products", result);
       }
     });
     Meteor.call("units.list", {}, function (error, result) {

@@ -12,6 +12,19 @@ FlowRouter.route("/products", {
     this.render("publicLayoutsDefault", { page: "publicPagesProducts" });
   },
 });
+FlowRouter.route("/stockTypes", {
+  name: "public.stockTypes",
+  action: function (params, queryParams) {
+    this.render("publicLayoutsDefault", { page: "publicPagesStockTypes" });
+  },
+});
+FlowRouter.route("/units", {
+  name: "public.units",
+  action: function (params, queryParams) {
+    this.render("publicLayoutsDefault", { page: "publicPagesUnits" });
+  },
+});
+
 FlowRouter.route("/stockCards", {
   name: "public.stockCards",
   action: function (params, queryParams) {
@@ -24,17 +37,5 @@ FlowRouter.route("/stockTransActions/:stockCardId", {
     this.render("publicLayoutsDefault", {
       page: "publicPagesStockTransactions",
     });
-  },
-});
-FlowRouter.route("/stockTypes", {
-  name: "public.stockTypes",
-  action: function (params, queryParams) {
-    this.render("publicLayoutsDefault", { page: "publicPagesStockTypes" });
-  },
-});
-FlowRouter.route("/units", {
-  name: "public.units",
-  action: function (params, queryParams) {
-    this.render("publicLayoutsDefault", { page: "publicPagesUnits" });
   },
 });

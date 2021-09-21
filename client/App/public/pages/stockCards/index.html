@@ -1,10 +1,10 @@
 <template name="publicPagesStockCards">
-  {{#let _stockCards = (state.get 'stockCards') _products=(state.get
+  {{#let _stockCards = (state.get 'stockCards') _product=(state.get
   'products')}}
-  <div class="container">
+  <div class="container py-3">
     <div class="row">
       <div class="d-flex justify-content-between">
-        <h1>stockCards {{_stockCards.product.name}}</h1>
+        <h1>stockCards</h1>
         <!-- Ben Yukardakini yapamam(Büyük ihtimalle list method'u ile alakalı bir durum var) -->
 
         <button
@@ -22,14 +22,13 @@
         <div class="card mt-3">
           <div class="card-body">
             <h5 class="card-title">
-              <strong>productId</strong> :{{productId}}
+              <strong>productId</strong> :{{product.name}}
             </h5>
             <h6 class="card-title">
               <strong>productId</strong> :{{productQuantity}}
             </h6>
             <p class="card-text">
-              <strong>unitId</strong> : {{unitId}} <br />
-              <strong>stockTypeId</strong>:{{stockTypeId}}
+              <strong>unitId</strong> : {{unit.name}} <br />
             </p>
           </div>
           <div class="card-footer">
